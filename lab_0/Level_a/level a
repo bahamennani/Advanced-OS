@@ -1,0 +1,21 @@
+  Explanation
+
+    Buffer Structure:
+        The circular buffer structure has fields for buffer storage, in and out indices, a count of items, a mutex, and condition variables.
+
+    Initialization and Cleanup:
+        init_buffer initializes buffer indices, mutex, and condition variables.
+        destroy_buffer releases resources after the program completes.
+
+    Producer:
+        The producer locks the buffer, checks if it's full, and waits if necessary.
+        Once there is space, it inserts an item, updates indices, signals the consumer, and unlocks the buffer.
+
+    Consumer:
+        The consumer locks the buffer, checks if it’s empty, and waits if needed.
+        When an item is available, it consumes it, updates indices, signals the producer, and unlocks the buffer.
+
+    Main Function:
+        Starts producer and consumer threads, waits for them to finish, and then cleans up resources.
+
+  This implementation synchronizes producer and consumer activities with a mutex and condition variables, ensuring safe access to the shared buffer.
